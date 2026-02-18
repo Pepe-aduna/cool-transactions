@@ -5,7 +5,7 @@ class BaseConfig:
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = (
-        "mysql+pymysql://clames:clames1!@localhost:3306/transaction_data"
+        "mysql+pymysql://clames:clames1!@host.docker.internal:3306/transaction_data"
     )
     DEBUG = True
 
