@@ -1,0 +1,7 @@
+flask
+requests
+flask_sqlalchemy
+flask_migrate
+sqlalchemy
+marshmallow
+pymysql
