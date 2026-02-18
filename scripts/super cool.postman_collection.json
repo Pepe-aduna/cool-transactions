@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "aa816f29-9411-47ad-98e4-0b5478e0746a",
+		"name": "super cool",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7842053"
+	},
+	"item": [
+		{
+			"name": "charge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_number\" : \"account-0001\",\n    \"transaction_id\" : \"00000201\",\n    \"amount\" : 3.45,\n    \"currency\":\"848\",\n    \"movement_type\" : \"01\",\n    \"description\" : \"Charge validacion - 02\",\n    \"date\" : \"2026-02-10 16:03:03\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/transactions/charge",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"transactions",
+						"charge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charge-reversal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_number\" : \"account-0001\",\n    \"transaction_id\" : \"00000202\",\n    \"amount\" : 3.45,\n    \"currency\":\"848\",\n    \"movement_type\" : \"01\",\n    \"description\" : \"Reversa validacion - 02\",\n    \"date\" : \"2026-02-10 16:03:03\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/transactions/charge/reversal",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"transactions",
+						"charge",
+						"reversal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fund",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_number\" : \"account-0001\",\n    \"transaction_id\" : \"0000106\",\n    \"amount\" : 10.00,\n    \"currency\":\"848\",\n    \"movement_type\" : \"01\",\n    \"description\" : \"Fund validacion - 02\",\n    \"date\" : \"2026-02-10 16:03:03\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/transactions/fund",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"transactions",
+						"fund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fund-reversal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_number\" : \"account-0001\",\n    \"transaction_id\" : \"0000106\",\n    \"amount\" : 10.00,\n    \"currency\":\"848\",\n    \"movement_type\" : \"01\",\n    \"description\" : \"Fund validacion - 02\",\n    \"date\" : \"2026-02-10 16:03:03\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/transactions/fund/reversal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"transactions",
+						"fund",
+						"reversal"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
