@@ -1,4 +1,5 @@
 import json
+from decimal import Decimal
 
 from flask import Blueprint, request, jsonify
 from app.services.charge_service import ChargeService
@@ -50,3 +51,16 @@ def fund_reversal():
     transaction = json.loads(ReversalService.fund_reversal(data))
 
     return jsonify(transaction), 200
+
+@transaction_bp.route("/transactions/suma", methods=["POST"])
+def sumas():
+    data = request.json
+    num1 = Decimal(data["num1"])
+    num2 = Decimal(data["num2"])
+    total = num1 + num2
+
+    nn = data["nn"]
+    mm = data["mm"]
+    tt= nn + mm
+
+    return jsonify({"total":total,"tt":tt}), 200

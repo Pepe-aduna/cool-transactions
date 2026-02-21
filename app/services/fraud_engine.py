@@ -12,4 +12,4 @@ class FraudEngine:
     @staticmethod
     def evaluate(data: dict):
         print("POST/CALL to Fraud Engine")
-        return json.dumps({"message":"SUCCESS"})
+        return json.dumps({"message":"SUCCESS","risk":"low"})

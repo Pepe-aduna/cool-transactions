@@ -9,12 +9,17 @@ class TransactionRepository:
     """
     Transaction Repository
     Clase que contiene las operaciones utilizadas en la base de datos
-    esta clase esta pensada mas para ir en una librería que replicarla en cada servicio
-    los metodos charge y fund muestran que podríamos tener metodos con diferentes
-    parametros e incluso algun manejo de las respuestas, por otra parte los metodos de las reversas
-    muestran que hay codigo que se puede reusar, usando funciones con diferentes para agilizar
-    y hacer mas descriptivo el llamado a cada stored procedure en lugar de pasarlo directamemnte
-    como parametro desde el servicio.
+    esta clase esta pensada mas para ir en una librería para no replicarla en cada servicio,
+    los metodos charge y fund muestran que es mejor práctica tener cada operación en metodos separados
+    por el número de parámetros por ejemplo e incluso algún manejo de las respuestas, por otra parte,
+    los metodos de las reversas muestran que código del llamado a los SP se puede reusar, pero manteniendo
+    nombres de funciones con diferentes lo que hace mas descriptivo el llamado a cada stored procedure
+    en lugar de tener una sola función y pasar como parámetro el nombre del SP a ejecutar.
+    Las razones a destacar para delegar las operaciones en un SP en de base de datos son:
+     - Evitar errores de precisión (punto flotante)
+     - Reducir la probabilidad de error al codificar, eficiencia de mantenimiento al tener la operación en un solo lugar.
+     - Si tenemos diferentes servicios con diferentes tecnologías, solo se tiene que implementer
+        el llamado a los SP que es un estándar.
     """
     @staticmethod
     def get_all():
