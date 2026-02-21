@@ -17,11 +17,11 @@ class FundService:
         transaction = Transaction(**data)
 
         fraud_result = json.loads(FraudEngine.evaluate(data))
-        if fraud_result['risk'] != "medium":
+        if fraud_result['risk'] == "medium":
             FundService.send_to_pending(data)
             return json.dumps({"message": "to_pending_by_fraud_rules", "tx_id": transaction.transaction_id})
 
-        if fraud_result['risk'] != "high":
+        if fraud_result['risk'] == "high":
             return json.dumps({"message": "rejected_by_fraud_rules", "tx_id": transaction.transaction_id})
 
         response = json.loads(TransactionRepository.refund(transaction))
