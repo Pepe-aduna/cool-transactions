@@ -16,8 +16,7 @@ def try_catch_handler(default_response="An error occurred"):
                 # Log the error (optional)
                 print(f"Exception in {f.__name__}: {e}")
                 # Return a custom response
-                return jsonify({"error": str(e),
-                                "cause": str(e.__cause__),
+                return jsonify({"cause": str(e.__cause__),
                                 "message": default_response}), 500
         return wrapper
     return decorator

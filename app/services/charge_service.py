@@ -3,6 +3,7 @@ import json
 from app.models.transaction_model import Transaction
 from app.repositories.transaction_repository import TransactionRepository
 from app.repositories.account_repository import AccountRepository
+from app.services.external_charge import PAYMENT_REGISTRY, Charge
 from app.services.fraud_engine import FraudEngine
 
 
@@ -25,6 +26,7 @@ class ChargeService:
     def charge(data: dict):
         try:
             transaction = Transaction(**data)
+            print("Start charge: ", transaction.transaction_id)
 
             account = AccountRepository.get_by_account(transaction.account_number)
             if account.status != "enabled":
@@ -34,7 +36,11 @@ class ChargeService:
             if fraud_result['message'] != "SUCCESS":
                 return json.dumps({"message": "rejected_by_fraud_rules", "tx_id": transaction.transaction_id})
 
-            response = json.loads(TransactionRepository.charge(transaction))
+            currency = transaction.currency
+            strategy = PAYMENT_REGISTRY.get(currency,Charge())
+            print("Strategy: ", strategy.getName())
+
+            response = json.loads(strategy.charge(transaction))
             print("charge response: ", response)
             if response.get('error') is not None:
                 print("rejected_by_charge")
@@ -42,7 +48,7 @@ class ChargeService:
 
             ChargeService.event(data)
         except Exception as e:
-            print(f"Exception in CHARGE: {e.__cause__}")
+            print(f"Exception in CHARGE: {e}")
             if 'Insufficient' in str(e.__cause__):
                 return json.dumps({"cause": str(e.__cause__), "tx_id": data.get("transaction_id")})
 
